@@ -4,7 +4,9 @@ from django.db import models
 
 class Categories(models.Model):
     name = models.CharField(max_length=100)
-    #__str__ = str(name)
+    
+    def __str__(self):
+        return self.name
 
 
 class Spec(models.Model):
@@ -12,12 +14,18 @@ class Spec(models.Model):
     
     category = models.ForeignKey(to=Categories, on_delete=models.DO_NOTHING, default=None, blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Badge(models.Model):
     name = models.CharField(max_length=100)
-    stars = models.IntegerField(default=0)
+    stars = models.IntegerField(default=1)
 
     spec = models.ForeignKey(to=Spec, on_delete=models.DO_NOTHING, default=None, blank=True)
+    
+    def __str__(self):
+        return self.name
 
 
 # hierarchy of scouts:
@@ -27,11 +35,17 @@ class Troop(models.Model):
     number = models.IntegerField(default=0)
     patron = models.CharField(max_length=100, default=None, blank=True)
 
+    def __str__(self):
+        return self.name
+
 class Patrol(models.Model):
     name = models.CharField(max_length=100)
     leader = models.CharField(max_length=100)
 
     troop = models.ForeignKey(to=Troop, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.name
 
 
 class Scout(models.Model):
@@ -52,3 +66,6 @@ class Scout(models.Model):
     rank = models.CharField(max_length=100, choices=RANK_NAMES, default='BISZ')
 
     badges = models.ManyToManyField(to=Badge, blank=True, default=None)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
