@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories, Spec, Badge, Troop, Patrol, Scout
+from .models import Category, Spec, Badge, Troop, Patrol, Scout
 
 class BadgeInline(admin.TabularInline):
     model = Badge
@@ -7,7 +7,7 @@ class BadgeInline(admin.TabularInline):
 class SpecInline(admin.TabularInline):
     model = Spec
 
-@admin.register(Categories)
+@admin.register(Category)
 class CategoriesAdmin(admin.ModelAdmin):
     list_display = ('id','name',)
     inlines = [
