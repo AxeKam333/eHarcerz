@@ -1,0 +1,195 @@
+ # eHarcerz OpenAPI
+
+openapi: 3.0.3
+
+info:
+  title: OpenAPI backend for eHarcerz
+  version: "1.0"
+  
+externalDocs:
+  description: Github repository
+  url: https://github.com/AxeKam333/eHarcerz
+
+servers:
+  - url: https://localhost:44333/api
+
+tags:
+  - name: troop
+    description: Operations about troops
+  - name: patrol
+    description: Operations about patrols
+  - name: scaut
+    description: Operations about scauts
+  - name: badges
+    description: Operations about badges
+    
+paths:
+  /troop/{troopId}/list/patrols:
+    summary: List all patrols in troop 
+    get:
+      tags: 
+        - troop
+      summary: Get list of all patrols
+      parameters:
+      - name: troopId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+        400:
+          description: Failed
+  /troop/{troopId}/list/scauts:
+    get:
+      tags: 
+      - troop
+      parameters:
+      - name: troopId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /troop/{troopId}/badges:
+    get:
+      tags: 
+      - troop
+      parameters:
+      - name: troopId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /troop/{troopId}/badges/time:
+    post:
+      tags: 
+      - troop
+      parameters:
+      - name: troopId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /troop/{troopId}/create/patrol:
+    post:
+      tags: 
+      - troop
+      parameters:
+      - name: troopId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /troop/{troopId}/create/scaut:
+    post:
+      tags: 
+      - troop
+      parameters:
+      - name: troopId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+          
+  /patrol/{patrolId}/list/scauts:
+    get:
+      tags: 
+      - patrol
+      parameters:
+      - name: patrolId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /patrol/{patrolId}/badges:
+    get:
+      tags: 
+      - patrol
+      parameters:
+      - name: patrolId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /patrol/{patrolId}/badges/time:
+    post:
+      tags: 
+      - patrol
+      parameters:
+      - name: patrolId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /scaut/{scautId}/badges:
+    get:
+      tags: 
+      - scaut
+      parameters:
+      - name: scautId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+          
+  /scaut/{scautId}/badges/time:
+    post:
+      tags: 
+      - scaut
+      parameters:
+      - name: scautId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+          
+  /scaut/{scautId}/add/badge:
+    post:
+      tags: 
+      - scaut
+      parameters:
+      - name: scautId
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+        
+components:
+  schemas:
+    HashId:
+      type: string
+      example: 9ca7c1c2-31e8-11ee-be56-0242ac120002
