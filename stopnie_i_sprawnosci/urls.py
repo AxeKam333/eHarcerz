@@ -24,4 +24,4 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
 ]
 
-urlpatterns.append(re_path('app/^', views.index))
+urlpatterns.append(re_path('app/', views.index))

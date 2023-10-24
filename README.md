@@ -51,3 +51,14 @@ python3 manage.py migrate
 ```
 
 ### For more information check out [Django documentation](https://docs.djangoproject.com/en/4.2/topics/migrations/).
+
+## Setup React
+
+build an react server:
+```
+npm run build
+```
+
+that should create compiled [index.html](frontend/dist/index.html)
+
+server is starting static page: [server_starting.html](templates/server_starting.html)
