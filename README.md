@@ -30,6 +30,7 @@ with open('path/to/file/badges.json') as file:
 
 
 Then run this custom command in the terminal:
+(after migrating changes)
 
 ```
 python3 manage.py badges_from_json
