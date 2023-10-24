@@ -1,0 +1,49 @@
+.logo_img {
+    height: 50px; 
+    float: left;
+    margin: 8px 0px 0px 0px;
+}
+.topbar {
+    float: left;
+    font-family: Ubuntu;
+    font-size: 25px;
+    color: white;
+}
+.container {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.menu_bar {
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 10px;
+    background-color: #E6E6E6;
+}
+.site-layout {
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.centre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.github {
+    color: black;
+    text-decoration: none;
+}
+.big_logo {
+    margin-top: 50px;
+    width: 90px;
+}
+.wide_logo {
+    margin: 10px;
+    width: 230px;
+    margin-top: 50px;
+}
