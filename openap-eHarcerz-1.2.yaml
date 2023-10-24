@@ -4,7 +4,7 @@ openapi: 3.0.3
 
 info:
   title: OpenAPI backend for eHarcerz
-  version: "1.1"
+  version: "1.2"
   
 externalDocs:
   description: Github repository
@@ -23,12 +23,30 @@ tags:
     
     
 paths:
-  /troop/list:
-    summary: List all info needed in troop 
+  /troop/scauts:
+    summary: info 
     post:
       tags: 
         - troop
-      summary: Get list all info needed in troop
+      summary: Get list all info about badges needed in troop
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+        400:
+          description: Failed
+  /troop/badges:
+    summary: info 
+    post:
+      tags: 
+        - troop
+      summary: Get list all info about badges needed in troop
       requestBody:
         description: Optional description in *Markdown*
         required: true
@@ -70,7 +88,7 @@ paths:
         200:
           description: Success
           
-  /patrol/list:
+  /patrol/scauts:
     post:
       tags: 
       - patrol
@@ -84,8 +102,21 @@ paths:
       responses:
         200:
           description: Success
-
-  /scaut/list:
+  /patrol/badges:
+    post:
+      tags: 
+      - patrol
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HashId'
+      responses:
+        200:
+          description: Success
+  /scaut/badges:
     post:
       tags: 
       - scaut
@@ -99,6 +130,10 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Badges'
  
         
 components:
@@ -106,3 +141,6 @@ components:
     HashId:
       type: string
       example: {id: 9ca7c1c2-31e8-11ee-be56-0242ac120002}
+    Badges:
+      type: string
+      example: {}
