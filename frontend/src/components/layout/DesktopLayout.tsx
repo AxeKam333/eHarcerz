@@ -1,73 +1,56 @@
 import IndexRouter from "../../routes/router";
-import { Layout } from "antd";
-import { MenuProps } from "antd"; 
-import { Button, Dropdown } from 'antd';
+import { Layout, Menu, MenuProps } from "antd";
+import { Button } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 import "./desktopstyle.css"
 
-const items: MenuProps['items'] = [
+const sites: MenuProps['items'] = [
   {
-    key: '1',
-    label: (
-      <a target="_self" rel="noopener noreferrer" href="/troop/">
-        Troop
-      </a>
-    ),
+    key:'0',
+    label: <a href="/stats/" rel="noopener noreferrer">Statistics</a>
   },
   {
-    key: '2',
-    label: (
-      <a target="_self" rel="noopener noreferrer" href="/patrols/">
-        Patrols
-      </a>
-    ),
+    key:'1',
+    label: <a href="/view/" rel="noopener noreferrer">View</a>
   },
   {
-    key: '3',
-    label: (
-      <a target="_self" rel="noopener noreferrer" href="/scauts/">
-        Scauts
-      </a>
-    ),
+    key:'2',
+    label: <a href="/add/" rel="noopener noreferrer">Add</a>
   },
-];
+  {
+    key:'3',
+    label: <a href="/contact/" rel="noopener noreferrer">Contact us</a>
+  },
 
-const Opt = (props:any) =>{
-  return(
-    <Button type="text" onClick= { () => {window.open (props.html, '_self')}} style={{width:"100px"}} size="large">
-          {props.text}
-    </Button>
-  )
-}
-
+]
 
 export const DesktopLayout = () => {
     return (
       <>
         <Layout>
-            <Header className="header" style={{backgroundColor:"#049da0"}}>
-              <a href={"/"}>
-              <div>
-              </div>
-              <div className="topbar">
-                &nbsp;eHarcerz
-              </div>
+            <Header className="header"
+            style={{
+              backgroundColor:"#049da0",
+              position: 'sticky',
+              top: 0,
+              zIndex: 1,
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+            >
+              <a href={"/"} style={{padding:"25px"}}>
+                <div className="logo_img">
+                </div>
+                <div className="site-name">
+                  &nbsp;eHarcerz
+                </div>
               </a>     
+              <Menu theme="dark" style={{backgroundColor:"#049da0", width:"100%"}} mode="horizontal" items={sites} />
+
             </Header>
-            <div className="container">
-              < div className="menu_bar">
-                {/* menu bar fits desktop layout, for smaller spaces delete space-evenly */}
-                  <Dropdown menu={{ items }} placement="bottom">
-                    <Button type="text" style={{width:"100px"}} size="large" onClick= { () => {window.open ("/troop/", '_self')}}>
-                          Info
-                    </Button>
-                  </Dropdown>
-                  {/* <Opt text="About us" html="/about/"/>
-                  <Opt text="Cite us" html="/cite/"/>
-                  <Opt text="Help" html="/help/"/> */}
-              </div>
-            </div>
             <Content className="site-layout">
                 <Layout>
                   <div>

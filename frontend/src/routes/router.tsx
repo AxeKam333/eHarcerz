@@ -1,13 +1,13 @@
 import { ReactElement } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { TroopResults } from "../components/troop/TroopResults";
+import { Statistics } from "../components/statistic/Stats";
 
 const IndexRouter: React.FC = (): ReactElement => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={"/"}/>
-        <Route path={"/troop/"} element={<TroopResults/>} />
+        <Route path={"/stats/"} element={<Statistics/>} />
         <Route path={"/add/"} element={<></>} />
       </Routes>
     </BrowserRouter>
