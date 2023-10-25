@@ -14,6 +14,7 @@ urlpatterns = [
     # path('open_note/<int:id>/', views.open_note, name='open_note'),
 
     # api
-    path('api//troop/badges', views.get_badges, name='get_badges'),
-    path('api/hello-world', views.hello_world, name='hello_world')
+    path('api/get-badges', views.get_badges, name='get_badges'),
+    path('api/scouts', views.scouts, name='scouts'),
+    path('api/data', views.data, name='data')
 ]

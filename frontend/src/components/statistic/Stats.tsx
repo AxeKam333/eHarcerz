@@ -10,7 +10,8 @@ export function Statistics() {
 
           <h1 id="troop">TroopResults</h1>
           <p>tabela adekwatności stopni do wieku</p>
-          <div style={{ height: "5000px" }}></div>
+          <p>tabela zdobytych stopni i sprawnosci</p>
+          <div style={{ height: "500px" }}></div>
           <p id="patrols">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut
             pharetra dolor, sit amet congue purus. Sed lacus est, lobortis ut
@@ -62,9 +63,9 @@ export function Statistics() {
             Orci varius natoque penatibus et magnis dis parturient montes,
             nascetur ridiculus mus. Ut bibendum faucibus turpis vel faucibus.{" "}
           </p>
-          <div style={{ height: "5000px" }}></div>
+          <div style={{ height: "500px" }}></div>
 
-          <p id="scauts">tabela zdobytych stopni i sprawnosci</p>
+          <p id="scouts">lista harcerzy</p>
         </Col>
         <Col span={4}>
           <Anchor style={{ position: "sticky", top: "100px" }} affix={false} targetOffset={100}
@@ -81,8 +82,8 @@ export function Statistics() {
               },
               {
                 key: "part-3",
-                href: "#scauts",
-                title: "Scauts",
+                href: "#scouts",
+                title: "Scouts",
               },
             ]}
           />

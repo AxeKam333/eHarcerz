@@ -1,7 +1,7 @@
 # eHarcerz
 ## About
 
-Site eHarcerz is created to help scout team leaders (especially from organization ZHR from Poland) with handling information about their units. Goal is to provide useful, secure online tools to manage badges and ranks earned by scauts.
+Site eHarcerz is created to help scout team leaders (especially from organization ZHR from Poland) with handling information about their units. Goal is to provide useful, secure online tools to manage badges and ranks earned by scouts.
 
 Created using Django framework.
 

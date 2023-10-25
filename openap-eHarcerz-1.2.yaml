@@ -18,12 +18,12 @@ tags:
     description: Operations avalible for troop leader
   - name: patrol
     description: Operations avalible for patrol leader
-  - name: scaut
-    description: Operations avalible for every scaut
+  - name: scout
+    description: Operations avalible for every scout
     
     
 paths:
-  /troop/scauts:
+  /troop/scouts:
     summary: info 
     post:
       tags: 
@@ -73,7 +73,7 @@ paths:
       responses:
         200:
           description: Success
-  /create/scaut:
+  /create/scout:
     post:
       tags: 
       - troop
@@ -88,7 +88,7 @@ paths:
         200:
           description: Success
           
-  /patrol/scauts:
+  /patrol/scouts:
     post:
       tags: 
       - patrol
@@ -116,10 +116,10 @@ paths:
       responses:
         200:
           description: Success
-  /scaut/badges:
+  /scout/badges:
     post:
       tags: 
-      - scaut
+      - scout
       requestBody:
         description: Optional description in *Markdown*
         required: true

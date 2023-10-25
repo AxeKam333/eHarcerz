@@ -6,22 +6,28 @@ const { Header, Content, Footer } = Layout;
 import "./desktopstyle.css"
 
 const sites: MenuProps['items'] = [
+
   {
     key:'0',
-    label: <a href="/stats/" rel="noopener noreferrer">Statistics</a>
-  },
-  {
-    key:'1',
     label: <a href="/view/" rel="noopener noreferrer">View</a>
   },
   {
-    key:'2',
+    key:'1',
     label: <a href="/add/" rel="noopener noreferrer">Add</a>
+  },
+  {
+    key:'2',
+    label: <a href="/stats/" rel="noopener noreferrer">Statistics</a>
   },
   {
     key:'3',
     label: <a href="/contact/" rel="noopener noreferrer">Contact us</a>
   },
+  {
+    key:'4',
+    label: <a href="https://stamps.zhr.pl/" target="_blank" rel="noopener noreferrer">Badges</a>
+  },
+
 
 ]
 
@@ -48,7 +54,7 @@ export const DesktopLayout = () => {
                   &nbsp;eHarcerz
                 </div>
               </a>     
-              <Menu theme="dark" style={{backgroundColor:"#049da0", width:"100%"}} mode="horizontal" items={sites} />
+              <Menu theme="dark" style={{backgroundColor:"#049da0", width:"100%"}} mode="horizontal" items={sites} selectable={false} />
 
             </Header>
             <Content className="site-layout">
