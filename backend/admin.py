@@ -37,7 +37,7 @@ class PatrolAdmin(admin.ModelAdmin):
 
 @admin.register(Scout)
 class ScoutAdmin(admin.ModelAdmin):
-    list_display = ('id','first_name', 'last_name', 'patrol')
+    list_display = ('id','first_name', 'nick', 'patrol')
     filter_horizontal = ['badges']
 
 

@@ -29,14 +29,18 @@ def get_badges(request):
 def scouts(request):
     try:
         troop = Troop.objects.get(id="1")
-        print(troop)
-        patrols = Patrol.objects.filter(troop=troop)
-        print(patrols)
+        patrols = Patrol.objects.filter(troop=troop) #docelowo zagnieżdzone wartości
         scouts = Scout.objects.filter(patrol__in=patrols)
-        print(scouts)
         list = []
         for scout in scouts:
-            list.append({"id": scout.id, "name": scout.first_name + " " + scout.last_name})
+            badges = [(badge.name) for badge in scout.badges.all()]
+            list.append({
+                "id": scout.id, 
+                "name": scout.first_name + " " + scout.nick,
+                "patrol": scout.patrol.name,
+                "rank": scout.rank,
+                "badges": ", ".join(badges)
+            })
         return HttpResponse(
         status=200,
         content=json.dumps(list),

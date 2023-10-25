@@ -58,22 +58,22 @@ class Patrol(models.Model):
 
 class Scout(models.Model):
     first_name = models.CharField(max_length=100,default='Imie')
-    last_name = models.CharField(max_length=100,default=None, blank=True)
+    nick = models.CharField(max_length=100,default=None, blank=True)
 
     patrol = models.ForeignKey(to=Patrol, on_delete=models.SET_NULL, default=None, blank=True, null=True)
 
     RANK_NAMES = (
-        ('BIS', 'BISZKOPT'),
-        ('DH', 'DRUH'),
-        ('MŁ', 'MŁODZIK'),
-        ('WYW', 'WYWIADOWCA'),
-        ('ĆW', 'ĆWIK'),
+        ('-', 'BISZKOPT'),
+        ('dh', 'DRUH'),
+        ('mł', 'MŁODZIK'),
+        ('wyw', 'WYWIADOWCA'),
+        ('ćw', 'ĆWIK'),
         ('HO', 'HARCERZ ORLI'),
         ('HR', 'HARCERZ RZECZYPOSPOLITEJ'),
     )
-    rank = models.CharField(max_length=100, choices=RANK_NAMES, default='BISZ')
+    rank = models.CharField(max_length=100, choices=RANK_NAMES, default='-')
 
     badges = models.ManyToManyField(to=Badge, blank=True, default=None)
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return self.first_name + ' ' + self.nick

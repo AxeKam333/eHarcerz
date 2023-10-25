@@ -32,6 +32,16 @@ export function View() {
       dataIndex: "name",
       key: "name",
     },
+    {
+      title: "Rank",
+      dataIndex: "rank",
+      key: "rank",
+    },
+    {
+      title: "Badges",
+      dataIndex: "badges",
+      key: "badges",
+    },
     ];
 
   useEffect(() => {
