@@ -24,6 +24,26 @@ def get_badges(request):
         content=json.dumps({"message": "Internal server error"}),
         content_type="application/json",
     )
+
+@csrf_exempt
+def badges_events(request):
+    try:
+        events = BadgeEvent.objects.filter(scout__patrol__troop__id="1")
+        list = []
+        for event in events:
+            print(event.date)
+            list.append({"date": str(events[0].date).split(" ")[0], "scout": event.scout.first_name + " " + event.scout.nick, "badge": event.badge.name, "comment": event.comment })
+        return HttpResponse(
+        status=200,
+        content=json.dumps(list),
+        content_type="application/json",
+        )
+    except:
+        return HttpResponse(
+        status=500,
+        content=json.dumps({"message": "Internal server error"}),
+        content_type="application/json",
+    )
     
 @csrf_exempt
 def scouts(request):

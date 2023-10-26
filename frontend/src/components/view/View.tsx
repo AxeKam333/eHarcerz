@@ -15,14 +15,19 @@ export function View() {
       key: "date",
     },
     {
+      title: "Scout",
+      dataIndex: "scout",
+      key: "scout",
+    },
+    {
       title: "Badge",
       dataIndex: "badge",
       key: "badge",
     },
     {
-      title: "Scout",
-      dataIndex: "scout",
-      key: "scout",
+      title: "Comment",
+      dataIndex: "comment",
+      key: "comment",
     },
   ];
 
@@ -50,7 +55,7 @@ export function View() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ values }),
     };
-    fetch(SERVER_URL + "/api/get-badges", requestOptions)
+    fetch(SERVER_URL + "/api/badges-events", requestOptions)
       .then((response) => response.json())
       .then((data) => setData(data));
 
@@ -72,7 +77,6 @@ export function View() {
           <h1 id="badges">Badges</h1>
           <Table columns={badgesColumns} dataSource={data} style={{margin:"15x"}}/>
           <h1 id="scouts">Scouts</h1>
-          <p>Scouts</p>
           <Table columns={scoutsColumns} dataSource={scouts} style={{margin:"15x"}}/>
         </Col>
         <Col span={4}>

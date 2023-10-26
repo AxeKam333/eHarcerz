@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Spec, Badge, Troop, Patrol, Scout
+from .models import Category, Spec, Badge, Troop, Patrol, Scout, Event, BadgeEvent, RankEvent
 
 class BadgeInline(admin.TabularInline):
     model = Badge
@@ -40,5 +40,12 @@ class ScoutAdmin(admin.ModelAdmin):
     list_display = ('id','first_name', 'nick', 'patrol')
     filter_horizontal = ['badges']
 
+@admin.register(BadgeEvent)
+class BadgeEventAdmin(admin.ModelAdmin):
+    list_display = ('id','date', 'scout', 'badge', 'comment')
+
+@admin.register(RankEvent)
+class RankEventAdmin(admin.ModelAdmin):
+    list_display = ('id','date', 'scout', 'comment')
 
 admin.site_header = 'Stopnie i Sprawności'

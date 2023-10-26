@@ -15,6 +15,7 @@ urlpatterns = [
 
     # api
     path('api/get-badges', views.get_badges, name='get_badges'),
+    path('api/badges-events', views.badges_events, name='badges_events'),
     path('api/scouts', views.scouts, name='scouts'),
     path('api/data', views.data, name='data')
 ]
