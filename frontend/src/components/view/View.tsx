@@ -5,10 +5,16 @@ import { SERVER_URL } from "../../config.json";
 export function View() {
   const values = [""];
 
-  const [data, setData] = useState<Array<any>>([]);
-  const [scouts, setScouts] = useState<Array<any>>([]);
+  const [badgeEvents, setBadgeEvents] = useState<Array<any>>([]);
 
-  const badgesColumns = [
+  interface ScoutsValues {
+    scouts: Array<any>;
+    patrols: Array<any>;
+  }
+
+  const [scoutsInfo, setScoutsInfo] = useState<ScoutsValues>();
+
+  const badgeColumns = [
     {
       title: "Date",
       dataIndex: "date",
@@ -31,7 +37,7 @@ export function View() {
     },
   ];
 
-  const scoutsColumns = [
+  const scoutColumns = [
     {
       title: "Name",
       dataIndex: "name",
@@ -47,7 +53,7 @@ export function View() {
       dataIndex: "badges",
       key: "badges",
     },
-    ];
+  ];
 
   useEffect(() => {
     const requestOptions = {
@@ -55,18 +61,18 @@ export function View() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ values }),
     };
-    fetch(SERVER_URL + "/api/badges-events", requestOptions)
+    fetch(SERVER_URL + "/api/badge-events", requestOptions)
       .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((newBadgeEvents) => setBadgeEvents(newBadgeEvents));
 
-      const requestOptions2 = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ values }),
-      };
-      fetch(SERVER_URL + "/api/scouts", requestOptions2)
-        .then((response) => response.json())
-        .then((data) => setScouts(data));
+    const requestOptions2 = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ values }),
+    };
+    fetch(SERVER_URL + "/api/scouts", requestOptions2)
+      .then((response) => response.json())
+      .then((newScouts) => setScoutsInfo(newScouts));
   }, []);
 
   return (
@@ -75,9 +81,18 @@ export function View() {
         <Col span={4}></Col>
         <Col span={16}>
           <h1 id="badges">Badges</h1>
-          <Table columns={badgesColumns} dataSource={data} style={{margin:"15x"}}/>
+          <Table
+            columns={badgeColumns}
+            dataSource={badgeEvents}
+            style={{ margin: "15x" }}
+          />
           <h1 id="scouts">Scouts</h1>
-          <Table columns={scoutsColumns} dataSource={scouts} style={{margin:"15x"}}/>
+          <Table 
+          // docelowo zagniezdzona tabela z patrolami
+            columns={scoutColumns}
+            dataSource={scoutsInfo !== undefined ? scoutsInfo.scouts : []}
+            style={{ margin: "15x" }}
+          />
         </Col>
         <Col span={4}>
           <Anchor

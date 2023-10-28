@@ -87,7 +87,7 @@ class Event(models.Model):
     
     date = models.DateTimeField(auto_now_add=True)
     scout = models.ForeignKey(to=Scout, on_delete=models.SET_NULL, default=None, blank=True, null=True)
-    comment = models.CharField(max_length=100)
+    comment = models.CharField(max_length=100, default=None, blank=True)
 
     def __str__(self):
         return self.comment + ' ' + str(self.date)
@@ -96,4 +96,4 @@ class BadgeEvent(Event):
     badge = models.ForeignKey(to=Badge, on_delete=models.SET_NULL, default=None, blank=True, null=True)
     
 class RankEvent(Event):
-    rank = models.CharField(max_length=100, choices=RANK_NAMES, default='-')
+    rank = models.CharField(max_length=100, choices=RANK_NAMES, default=None, blank=True, null=True)
