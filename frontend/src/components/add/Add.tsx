@@ -2,13 +2,17 @@ import { Col, Form, Radio, Row, Select, SelectProps } from "antd";
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "../../config.json";
 import { AddForm } from "./AddForm";
-import { BadgesInfoValues, FormValues } from "../../types/AddTypes";
+import { BadgesInfoValues, FormValues, ScoutsInfoValues } from "../../types/AddTypes";
 
 export function Add() {
   const [form] = Form.useForm();
 
   const [badgesInfo, setBadgesInfo] = useState<BadgesInfoValues>();
   const [filteredBadges, setFilteredBadges] = useState<Array<any>>([]);
+
+  const [scoutsInfo, setScoutsInfo] = useState<ScoutsInfoValues>();
+  const [filteredScouts, setFilteredScouts] = useState<Array<any>>([]);
+
 
   const [values, setValues] = useState<FormValues>({
     radio: "Badges",
@@ -26,7 +30,9 @@ export function Add() {
     },
   });
 
-  useEffect(() => {
+  //initial api calls
+
+  useEffect(() => { 
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -44,9 +50,25 @@ export function Add() {
           }))
         );
       });
+    fetch(SERVER_URL + "/api/scouts", requestOptions)
+    .then((response) => response.json())
+    .then((newScouts:ScoutsInfoValues) => {
+      setScoutsInfo(newScouts);
+      setFilteredScouts(
+        newScouts.scouts.map((scout: any) => ({
+          key: scout.id,
+          label: scout.name,
+          value: scout.name
+        }))
+      ); 
+      
+    });
+
   }, []);
 
-  useEffect(() => {
+  //badges filter management
+
+  useEffect(() => { 
     if (badgesInfo === undefined || badgesInfo.badges === undefined) {
       console.log("badgesInfo is undefined");
       return;
@@ -72,15 +94,41 @@ export function Add() {
             category.includes(badge.category)
           );
         }
-
-
     }
-      
       setFilteredBadges(
         filtered.map((badge: any) => ({ key:badge.id, label: badge.name, value: badge.name }))
       );
     }
   }, [values.badgeFilters]);
+
+  //scouts filter management
+
+  useEffect(() => { 
+    if (scoutsInfo === undefined || scoutsInfo.scouts === undefined) {
+      console.log("scoutsInfo is undefined");
+      return;
+    } else {
+      let filtered = scoutsInfo.scouts;
+
+        const patrol = values.scoutFilters.patol;
+        const rank = values.scoutFilters.rank;
+
+        if (patrol.length > 0) {
+          filtered = filtered.filter((scout: any) =>
+            patrol.includes(scout.patrol)
+          );
+        }
+        if (rank.length >0) {
+          filtered = filtered.filter((scout: any) =>
+            rank.includes(scout.rank)
+          );
+        }
+
+        setFilteredScouts(
+          filtered.map((scout:any)=>({ key: scout.id, label: scout.name, value: scout.name}))
+        )
+    }
+  }, [values.scoutFilters]);
 
   // options:
 
@@ -89,10 +137,10 @@ export function Add() {
     { label: "**", value: 2 },
     { label: "***", value: 3 },
   ];
-
   let specOptions: SelectProps["options"] = [];
   let categoryOptions: SelectProps["options"] = [];
   let rankOptions: SelectProps["options"] = [];
+  let patrolOptions: SelectProps["options"] = [];
   if (badgesInfo) {
     specOptions = badgesInfo.specs.map((spec: any) => ({
       label: spec.name,
@@ -108,7 +156,13 @@ export function Add() {
             value: rank[0],
         };
     })
-  }
+    patrolOptions = scoutsInfo?.patrols.map((patrol: any) =>{
+      return {
+        label: patrol.name,
+        value: patrol.name
+      }
+    })
+  }  
 
   return (
     <>
@@ -198,6 +252,12 @@ export function Add() {
                 allowClear
                 style={{ width: "200px" }}
                 placeholder="rank"
+                onChange={(e)=> {
+                  setValues({
+                    ...values,
+                    scoutFilters: { ...values.scoutFilters, rank: e}
+                  })
+                }}
                 options={rankOptions}
               ></Select>
               <Select
@@ -205,15 +265,22 @@ export function Add() {
                 allowClear
                 style={{ width: "200px" }}
                 placeholder="patrol"
-                options={[]}
+                onChange={(e)=> {
+                  setValues({
+                    ...values,
+                    scoutFilters: { ...values.scoutFilters, patol: e}
+                  })
+                }}
+                options={patrolOptions}
               ></Select>
             </div>
             <Form.Item>
               <Select
+                mode="multiple"
                 allowClear
                 style={{ width: "200px" }}
-                placeholder="select scauts"
-                options={[]}
+                placeholder="select scouts"
+                options={filteredScouts}
               ></Select>
             </Form.Item>
           </AddForm>

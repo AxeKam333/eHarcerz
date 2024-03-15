@@ -9,6 +9,10 @@ Created using Django framework.
 
 While running commands, ensure that you're in the same directory as [manage.py](./manage.py).
 
+### Clone repository
+
+    git clone https://github.com/AxeKam333/eHarcerz.git
+
 ### Run server
 To run django dev server you need to run:
 

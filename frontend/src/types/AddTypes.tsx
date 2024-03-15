@@ -5,6 +5,25 @@ export type BadgesInfoValues = {
   ranks: Array<any>;
 };
 
+export type ScoutsInfoValues = {
+  patrols: 
+    {
+      id: number,
+      name: string,
+      leader: string
+    }[]
+  
+  scouts: 
+    {
+      badges: Array<string>
+      id: number
+      name: string
+      patrol: string
+      rank: string
+    }[]
+  
+}
+
 export type FormValues = {
   radio: string;
   selectedRankId: any;
