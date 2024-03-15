@@ -62,3 +62,22 @@ npm run build
 that should create compiled [index.html](frontend/dist/index.html)
 
 server is starting static page: [server_starting.html](templates/server_starting.html)
+
+## How to start an app
+
+0. 
+*Open python virtual enviroment
+
+    source ./path/to/enviroment/activate
+
+1. 
+
+    cd stopnie_i_sprawnosci
+    python manage.py runserver
+
+2. 
+Open new terminal and run:
+
+
+    cd stopnie_i_sprawnosci/frontend
+    npm run dev
